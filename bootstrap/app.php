@@ -80,6 +80,10 @@ $app->routeMiddleware([
     'AuthPeterSoft'=>App\Http\Middleware\AuthPeterSoft::class,
 ]);
 
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
+
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
 // ]);
@@ -104,6 +108,8 @@ $app->routeMiddleware([
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(Illuminate\Hashing\HashServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

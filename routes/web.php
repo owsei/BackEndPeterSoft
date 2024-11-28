@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 /** @var \Laravel\Lumen\Routing\Router $router */
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ $router->group(['middleware' => 'AuthPeterSoft'], function () use ($router) {
 
 
     //USUARIOS
+    $router->post('/loginUser', 'UserController@loginUser');
+    $router->get('/getUser', 'UserController@getUser');
     $router->get('/getAllUsers', 'UserController@getAllUsers');
 
 
