@@ -25,29 +25,15 @@ class UserController extends Controller
         $password=$request->input('password');
         $hashedPassword = Hash::make($password);
 
-        // echo $userName;
-        echo $password."<br>";
-        echo $hashedPassword."<br>";
-
-        // if (Hash::check($password, $hashedPassword)) {
-        //     echo 'La contraseña es correcta';
-        // } else {
-        //     echo 'La contraseña no es correcta';
-        // }
-
         $sql="select id,name,password from users where name='".$userName."'";// and password='".$hashedPassword."'";
-        //echo $sql."\n";
         $user = DB::selectOne($sql);
 
-        if ($user && Hash::check($password, $user->password)) {
-            return response()->json(['message' => 'Inicio de sesión exitoso']);
+        if ($user && Hash::check($password,$user->password)) {
+            return response()->json($user);
+            //return response()->json(['message' => 'Inicio de sesión exitoso']);
         } else {
             return response()->json(['message' => 'Credenciales inválidas'], 401);
         }
-
-        return response()->json($user);
-
-
     }
 
 
