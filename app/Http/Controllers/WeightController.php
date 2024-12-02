@@ -21,9 +21,19 @@ class WeightController extends Controller
 
     public function insertWeight(Request $request){
 
-        echo 'Insert data';
-        $userName= strtolower($request->input('userName'));
-        $password=$request->input('password');
+        // echo 'Insert data';
+        $idUser= $request->input('idUser');
+        $dateWeight= $request->input('dateInsert');
+        $weight=$request->input('weightInsert');
+
+        // echo "\n\t".$date;
+        // echo "\n\t".$weight;
+
+        $sql="INSERT INTO weight(idUser,weight,dateWeight)VALUES($idUser,$weight,'$dateWeight')";
+        echo $sql;
+        $response = DB::select($sql);
+        return response()->json($response);
+
 
     }
 
