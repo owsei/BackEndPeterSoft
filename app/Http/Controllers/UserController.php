@@ -25,8 +25,15 @@ class UserController extends Controller
         $password=$request->input('password');
         $hashedPassword = Hash::make($password);
 
-        $sql="select id,name,password from users where name='".$userName."'";// and password='".$hashedPassword."'";
+        // echo "\n\tpassword:".$password;
+        // echo "\n\tHashPass:".$hashedPassword;
+
+        $sql="select id,name,password,userid from petersoft.users where userid='".$userName."'";// and password='".$hashedPassword."'";
+        // echo $sql;
         $user = DB::selectOne($sql);
+
+        // echo "\n\tUser:".$user->password;
+        // echo "\n\tCheck:". Hash::check($password,$user->password);
 
         if ($user && Hash::check($password,$user->password)) {
             return response()->json($user);
