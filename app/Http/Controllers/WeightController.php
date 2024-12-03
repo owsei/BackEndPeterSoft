@@ -18,6 +18,11 @@ class WeightController extends Controller
         //
     }
 
+    public function getWeight(Request $request){
+        $sql="select idUser,weight,dateWeight from weight";
+        $response = DB::select($sql);
+        return response()->json($response);
+    }
 
     public function insertWeight(Request $request){
 
@@ -30,7 +35,7 @@ class WeightController extends Controller
         // echo "\n\t".$weight;
 
         $sql="INSERT INTO weight(idUser,weight,dateWeight)VALUES($idUser,$weight,'$dateWeight')";
-        echo $sql;
+        // echo $sql;
         $response = DB::select($sql);
         return response()->json($response);
 

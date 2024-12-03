@@ -27,13 +27,13 @@ $router->group(['middleware' => 'AuthPeterSoft'], function () use ($router) {
     $router->get('/testData', 'TestDataController@testData');
     $router->get('/testDataDependencies', 'TestDataController@testDataDependencies');
 
-
     //USUARIOS
     $router->post('/loginUser', 'UserController@loginUser');
     $router->get('/getUser', 'UserController@getUser');
     $router->get('/getAllUsers', 'UserController@getAllUsers');
 
     //WEIGHT
+    $router->get('/getWeight', 'WeightController@getWeight');
     $router->post('/insertWeight', 'WeightController@insertWeight');
 });
 
