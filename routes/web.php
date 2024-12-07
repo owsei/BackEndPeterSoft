@@ -27,6 +27,9 @@ $router->group(['middleware' => 'AuthPeterSoft'], function () use ($router) {
     $router->get('/testData', 'TestDataController@testData');
     $router->get('/testDataDependencies', 'TestDataController@testDataDependencies');
 
+    //MENU
+    $router->post('/getMainMenu', 'MenuController@getMainMenu');
+
     //USUARIOS
     $router->post('/loginUser', 'UserController@loginUser');
     $router->get('/getUser', 'UserController@getUser');

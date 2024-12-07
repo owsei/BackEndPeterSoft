@@ -28,7 +28,7 @@ class UserController extends Controller
         // echo "\n\tpassword:".$password;
         // echo "\n\tHashPass:".$hashedPassword;
 
-        $sql="select id,name,password,userid from petersoft.users where userid='".$userName."'";// and password='".$hashedPassword."'";
+        $sql="select id,name,password,userid from users where userid='".$userName."'";// and password='".$hashedPassword."'";
         // echo $sql;
         $user = DB::selectOne($sql);
 
