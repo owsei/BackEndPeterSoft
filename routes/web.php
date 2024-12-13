@@ -18,6 +18,9 @@ $router->get('/', function () use ($router) {
 });
 
 
+$router->post('/register', 'AuthController@register');
+$router->post('/loginUser', 'UserController@loginUser');
+
 
 //Todo tiene que pasar por aqui
 $router->group(['middleware' => 'AuthPeterSoft'], function () use ($router) {
@@ -31,12 +34,15 @@ $router->group(['middleware' => 'AuthPeterSoft'], function () use ($router) {
     $router->post('/getMainMenu', 'MenuController@getMainMenu');
 
     //USUARIOS
-    $router->post('/loginUser', 'UserController@loginUser');
+
     $router->get('/getUser', 'UserController@getUser');
     $router->get('/getAllUsers', 'UserController@getAllUsers');
 
     //WEIGHT
     $router->get('/getWeight', 'WeightController@getWeight');
     $router->post('/insertWeight', 'WeightController@insertWeight');
+
+    //WEIGHT FOR GRAPHIC
+    $router->get('/getWeightForGraphic', 'WeightController@getWeightForGraphic');
 });
 

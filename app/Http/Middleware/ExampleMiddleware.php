@@ -15,7 +15,6 @@ class ExampleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        echo 'prueba';
         return $next($request);
     }
 }

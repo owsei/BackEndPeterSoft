@@ -28,12 +28,13 @@ class UserController extends Controller
         // echo "\n\tpassword:".$password;
         // echo "\n\tHashPass:".$hashedPassword;
 
-        $sql="select id,name,password,userid from users where userid='".$userName."'";// and password='".$hashedPassword."'";
+        $sql="select id,name,userid,password from users where userid='".$userName."'";// and password='".$hashedPassword."'";
         // echo $sql;
         $user = DB::selectOne($sql);
 
-        // echo "\n\tUser:".$user->password;
+        //  echo "\n\tUser:".$user->password;
         // echo "\n\tCheck:". Hash::check($password,$user->password);
+
 
         if ($user && Hash::check($password,$user->password)) {
             return response()->json($user);

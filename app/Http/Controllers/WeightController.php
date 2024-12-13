@@ -19,7 +19,15 @@ class WeightController extends Controller
     }
 
     public function getWeight(Request $request){
-        $sql="select idUser,weight,dateWeight from weight";
+        $idUser= $request->input('idUser');
+        $sql="select idUser,weight,dateWeight  from weight where idUser=".$idUser." order by dateWeight desc";
+        $response = DB::select($sql);
+        return response()->json($response);
+    }
+
+    public function getWeightForGraphic(Request $request){
+        $idUser= $request->input('idUser');
+        $sql="select dateWeight as x,weight as y from weight where idUser=".$idUser." order by dateWeight asc";
         $response = DB::select($sql);
         return response()->json($response);
     }
