@@ -20,7 +20,7 @@ class MenuController extends Controller
 
     public function getMainMenu(){
 
-        $sql="select * from menu";
+        $sql="select id,name,route,isDropdown,parent,ordenation from menu order by ordenation asc";
         // echo $sql."\n";
         $user = DB::select($sql);
         return response()->json($user);
@@ -33,3 +33,5 @@ class MenuController extends Controller
 
     //
 }
+
+

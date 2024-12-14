@@ -18,7 +18,6 @@ class UserController extends Controller
         //
     }
 
-
     public function loginUser(Request $request){
 
         $userName= strtolower($request->input('userName'));
@@ -28,13 +27,18 @@ class UserController extends Controller
         // echo "\n\tpassword:".$password;
         // echo "\n\tHashPass:".$hashedPassword;
 
-        $sql="select id,name,userid,password from users where userid='".$userName."'";// and password='".$hashedPassword."'";
+        $token= uniqid(rand(), true);
+        // echo $token;
+
+        $sql="select id,name,userid,password,'".$token."' as token from users where userid='".$userName."'";// and password='".$hashedPassword."'";
         // echo $sql;
         $user = DB::selectOne($sql);
 
+        $sql="Update users set token='".$token."' where userid='".$userName."'" ;
+        DB::selectOne($sql);
+
         //  echo "\n\tUser:".$user->password;
         // echo "\n\tCheck:". Hash::check($password,$user->password);
-
 
         if ($user && Hash::check($password,$user->password)) {
             return response()->json($user);
@@ -52,17 +56,22 @@ class UserController extends Controller
 
 
     public function getUser(Request $request){
-
         $name=$request->query('name');
-
         $sql="select * from usuarios where name='".$name."'";
         // echo $sql."\n";
         $user = DB::select($sql);
         return response()->json($user);
-
-
-
     }
+
+    public function ValidateToken($token,$idUser){
+
+        $sql="select * from users where id='".$idUser."' and token='".$token."'";
+        // echo $sql."\n";
+        $user = DB::select($sql);
+        return $user!=null?true:false;
+    }
+
+
 
 
 

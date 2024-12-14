@@ -18,8 +18,9 @@ $router->get('/', function () use ($router) {
 });
 
 
-$router->post('/register', 'AuthController@register');
+
 $router->post('/loginUser', 'UserController@loginUser');
+$router->post('/register', 'AuthController@register');
 
 
 //Todo tiene que pasar por aqui
@@ -31,7 +32,7 @@ $router->group(['middleware' => 'AuthPeterSoft'], function () use ($router) {
     $router->get('/testDataDependencies', 'TestDataController@testDataDependencies');
 
     //MENU
-    $router->post('/getMainMenu', 'MenuController@getMainMenu');
+    $router->get('/getMainMenu', 'MenuController@getMainMenu');
 
     //USUARIOS
 
