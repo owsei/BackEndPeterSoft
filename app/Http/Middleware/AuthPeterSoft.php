@@ -26,7 +26,7 @@ class AuthPeterSoft
         if($headers['Authorization'])
         {
             $authHeader = $headers['Authorization'];
-            echo $authHeader;
+            //echo $authHeader;
             $userController= new UserController();
             if(!$userController->ValidateToken($authHeader,$request["idUser"]))
             {

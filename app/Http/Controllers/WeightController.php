@@ -20,7 +20,7 @@ class WeightController extends Controller
 
     public function getWeight(Request $request){
         $idUser= $request->input('idUser');
-        $sql="select weight,dateWeight  from weight where idUser=".$idUser." order by dateWeight desc";
+        $sql="select weight,dateWeight from weight where idUser=".$idUser." order by 2 desc";
         $response = DB::select($sql);
         return response()->json($response);
     }
