@@ -42,6 +42,7 @@ $router->group(['middleware' => 'AuthPeterSoft'], function () use ($router) {
     //WEIGHT
     $router->get('/getWeight', 'WeightController@getWeight');
     $router->post('/insertWeight', 'WeightController@insertWeight');
+    $router->delete('/deleteWeight', 'WeightController@deleteWeight');
 
     //WEIGHT FOR GRAPHIC
     $router->get('/getWeightForGraphic', 'WeightController@getWeightForGraphic');

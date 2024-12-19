@@ -20,7 +20,7 @@ class WeightController extends Controller
 
     public function getWeight(Request $request){
         $idUser= $request->input('idUser');
-        $sql="select idWeight,weight,dateWeight from weight where idUser=".$idUser." order by 2 desc";
+        $sql="select idWeight,weight,dateWeight from weight where idUser=".$idUser." order by 3 desc";
         $response = DB::select($sql);
         return response()->json($response);
     }
@@ -46,8 +46,17 @@ class WeightController extends Controller
         // echo $sql;
         $response = DB::select($sql);
         return response()->json($response);
+    }
 
+    public function deleteWeight(Request $request){
 
+        // echo 'Insert data';
+        $idWeight=$request->input('idWeight');
+
+        $sql="DELETE FROM weight where idWeight=".$idWeight;
+        echo $sql;
+        $response = DB::select($sql);
+        return response()->json($response);
     }
 
 
